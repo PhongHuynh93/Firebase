@@ -10,6 +10,7 @@
     tools:context="dhbk.android.firebase.MainActivity">
 
     <TextView
+        android:id="@+id/testFB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
