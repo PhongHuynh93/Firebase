@@ -52,8 +52,9 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
+        // sua branch
         // case 1
-        // tao child branch + value
+        // dò child branch + value
         myFirebaseRef.child("message").setValue("you'll love firebases");
 
         // case 2, tao object de luu
@@ -65,6 +66,13 @@ public class MainActivity extends AppCompatActivity {
         alanisawesomeMap.put("Phong", 1993);
         alanisawesomeMap.put("Dao", 1996);
         myFirebaseRef.child("case 3").setValue(alanisawesomeMap);
+
+        // tao branch
+        // case 4, tạo branch + push value
+        Firebase postRef = myFirebaseRef.child("case 4");
+        postRef.push().setValue(new KhoaHoc("Khoa Pham" , 1988));
+        postRef.push().setValue(new KhoaHoc("Khoa Pham 2", 1989));
+        postRef.push().setValue(new KhoaHoc("Khoa Pham 3", 1920));
 
     }
 }
