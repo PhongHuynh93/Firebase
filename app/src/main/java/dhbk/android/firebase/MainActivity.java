@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView txt;
@@ -49,7 +52,19 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
+        // case 1
         // tao child branch + value
         myFirebaseRef.child("message").setValue("you'll love firebases");
+
+        // case 2, tao object de luu
+        KhoaHoc alan = new KhoaHoc("Khoa Pham", 1988);
+        myFirebaseRef.child("case 2").setValue(alan);
+
+        // case 3, tao hashmap de luu -> tiện hơn
+        Map<String, Integer> alanisawesomeMap = new HashMap<String, Integer>();
+        alanisawesomeMap.put("Phong", 1993);
+        alanisawesomeMap.put("Dao", 1996);
+        myFirebaseRef.child("case 3").setValue(alanisawesomeMap);
+
     }
 }
