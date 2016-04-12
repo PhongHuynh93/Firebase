@@ -2,11 +2,14 @@ package dhbk.android.firebase;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -69,10 +72,24 @@ public class MainActivity extends AppCompatActivity {
 
         // tao branch
         // case 4, tạo branch + push value
-        Firebase postRef = myFirebaseRef.child("case 4");
-        postRef.push().setValue(new KhoaHoc("Khoa Pham" , 1988));
-        postRef.push().setValue(new KhoaHoc("Khoa Pham 2", 1989));
-        postRef.push().setValue(new KhoaHoc("Khoa Pham 3", 1920));
-
+        buttonSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Firebase postRef = myFirebaseRef.child("case 4");
+                // event save vao database khi nao`?
+                postRef.push().setValue(new KhoaHoc("Khoa Pham", 1988), new Firebase.CompletionListener() {
+                    @Override
+                    public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                        if (firebaseError != null) {
+                            Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Successs", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                postRef.push().setValue(new KhoaHoc("Khoa Pham 2", 1989));
+                postRef.push().setValue(new KhoaHoc("Khoa Pham 3", 1920));
+            }
+        });
     }
 }
